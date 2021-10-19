@@ -12,25 +12,20 @@
         <li class="" style="display: none">
             <a>
                 <i class='bx bx-search'></i>
-                
             </a>
-            
         </li>
-
 
         <div class="profile-images-card">
 
             <div class="profile-images">
-                <img src="../img/pp.png" id="upload-img">
+                @if (auth()->user()->profile_pic != null)
+                <img src="{{asset("images/".auth()->user()->profile_pic)}}" id="upload-imgg">
+                @else
+                <img src="{{asset('img/pp.png')}}" id="upload-imgg">
+                @endif
+                
             </div>
 
-            <div class="custom-file">
-                <label for="fileupload">
-                    <i class='bx bx-image-add ml-3' style="font-size: 25px;"></i>
-                    <span class="links-name text-white">Upload Photo</span>
-                </label>
-                <input type="file" id="fileupload">
-            </div>
             <h4>{{ auth()->user()->firstName }}</h4>
 
         </div>
@@ -64,12 +59,6 @@
 
 
     <script>
-	$(function(){
-		$("#fileupload").change(function(event) {
-			var x = URL.createObjectURL(event.target.files[0]);
-			$("#upload-img").attr("src",x);
-			console.log(event);
-		});
-	})
+	
 </script>
 </div>

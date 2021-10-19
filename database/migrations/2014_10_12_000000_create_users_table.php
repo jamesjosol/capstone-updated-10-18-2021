@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('email')->unique();
             $table->string('contactNo', 20);
+            $table->string('profile_pic')->nullable();
             $table->smallInteger('role')->default(2);
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();

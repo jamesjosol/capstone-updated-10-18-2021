@@ -28,6 +28,10 @@ Route::get('/dashboard', function () {
     return view('pages.dashboard');
 });
 
+Route::get('/test', function () {
+    return view('test');
+});
+
 // Route::get('/register', [AuthController::class, 'registrationForm']);
 // Route::post('/register', [AuthController::class, 'register']);
 // Route::get('/login', [AuthController::class, 'loginForm'])->name('login');
@@ -37,15 +41,19 @@ Route::group(['middleware'=>'auth'], function() {
     
     Route::group(['prefix'=>'admin', 'middleware'=>'isAdmin'], function () {
         Route::get('dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+
         Route::get('users', [AdminController::class, 'showUsers'])->name('admin.users');
         Route::post('users', [AdminController::class, 'storeUser'])->name('admin.users');
         Route::patch('users', [AdminController::class, 'updateUser'])->name('admin.users');
         Route::delete('users', [AdminController::class, 'deleteUser'])->name('admin.users');
+
+        Route::get('students', [AdminController::class, 'showStudents'])->name('admin.students');
     });
     
     Route::group(['prefix'=>'user', 'middleware'=>'isUser'], function () {
         Route::get('dashboard', [UserController::class, 'index'])->name('user.dashboard');
         Route::get('personalinfoform', [UserController::class, 'personalInfoForm'])->name('user.personalinfo');
+        Route::post('personalinfoform', [UserController::class, 'personalInfoStore'])->name('user.personalinfo');
     });
 
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');

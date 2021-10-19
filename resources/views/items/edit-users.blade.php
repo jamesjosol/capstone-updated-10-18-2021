@@ -54,7 +54,7 @@
                 {{Form::select('role', [
                     2 => 'Normal',
                     1 => 'Administrator',
-                ], null, ['class'=>'form-control', 'id'=>'modal-input-role'])}}
+                ], null, ['class'=>'form-control form-select', 'id'=>'modal-input-role'])}}
                 <span class="errspan" id="errspan">{{ $errors->first('role') }}</span>
             </div>
             <div class="form-group">

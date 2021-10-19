@@ -39,6 +39,14 @@
         </li>
 
         <li>
+            <a href="{{ route('admin.students') }}" class="{{ Request::is('admin/students') ? 'active' : '' }}">
+                <i class="fal fa-user-graduate"></i>
+                <span class="links-name">Students</span>
+            </a>
+            <span class="tooltip">Students</span>
+        </li>
+
+        <li>
             <a href="">
                 <i class='bx bx-home'></i>
                 <span class="links-name">Home</span>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Student;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -76,7 +77,7 @@ class AdminController extends Controller
         }
         
     
-        return redirect()->route('admin.users')->with('Message', "User [#$request->id] has been successfully updated.");
+        return redirect()->route('admin.users')->with('Message', "User [#ID$request->id] has been successfully updated.");
     }
 
     public function deleteUser(Request $request) {
@@ -84,6 +85,11 @@ class AdminController extends Controller
         $id = $request->id;
         $user->delete();
 
-        return redirect()->route('admin.users')->with('Message', "User [#$id] has been successfully deleted.");
+        return redirect()->route('admin.users')->with('Message', "User [#ID$id] has been successfully deleted.");
+    }
+
+    public function showStudents() {
+        $students = Student::orderByRaw('lastName,firstName')->get();
+        return view('pages.admins.students', compact('students'));
     }
 }

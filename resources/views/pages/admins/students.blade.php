@@ -1,4 +1,4 @@
-@section('mytitle', '| User list')
+@section('mytitle', '| Student list')
 
 @extends('layouts.app')
 
@@ -13,7 +13,7 @@
         <div class="text">
             <div class="container-fluid">
                 <div class="row p-3">
-                    <h1 class="fw-light" id="dashusers"><i class="fad fa-users"></i> User list</h1>
+                    <h1 class="fw-light" id="dashusers"><i class="fad fa-user-graduate"></i> Student list</h1>
                     <div class="mb-3">
                         <button class="btn btn-outline-primary float-end px-3" data-backdrop="static" data-toggle="modal" data-target="#createUsersModal">
                             <i class="fa fa-user-plus" aria-hidden="true"></i> New User
@@ -24,29 +24,21 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Full Name</th>
-                                    <th>Username</th>
-                                    <th>Email</th>
-                                    <th>Contact No.</th>
-                                    <th>Role</th>
+                                    <th>Profile Pic</th>
+                                    <th>Last Name</th>
+                                    <th>First Name</th>
+                                    <th>Middle Name</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($users as $user)
+                                @foreach($students as $student)
                                 <tr class="data-row">
-                                    <input type="hidden" name="" class="fname" value="{{$user->lastName}}">
-                                    <input type="hidden" name="" class="lname" value="{{$user->firstName}}">
-                                    <input type="hidden" name="" class="mname" value="{{$user->middleName}}">
-                                    <td>{{$user->id}}</td>
-                                    <td>{{$user->lastName}}, {{$user->firstName}} {{substr($user->middleName, 0, 1)}}.</td>
-                                    <td class="username">{{ $user->username }}</td>
-                                    <td class="email">{{ $user->email }}</td>
-                                    <td class="contact">{{ $user->contactNo }}</td>
-                                    <input type="hidden" name="" class="role" value="{{$user->role}}">
-                                    <td>
-                                        {{ $user->role == 1 ? 'Administrator' : 'Normal' }}
-                                    </td>
+                                    <td>{{$student->id}}</td>
+                                    <td class=""><img  style="width: 100px; border-radius:5px;" src="{{asset("images/". $student->user->profile_pic)}}" id="upload-imgg"></td>
+                                    <td>{{$student->lastName}}</td>
+                                    <td>{{$student->firstName}} </td>
+                                    <td>{{$student->middleName}}</td>
                                     <td class="text-center">
                                         <div class="btn btn-outline-primary tooltip-actbtn"><i class="far fa-eye"></i>
                                             <div class="top">
@@ -54,13 +46,13 @@
                                             </div>
                                         </div>
                                         
-                                        <div class="btn btn-outline-success tooltip-actbtn" id="edit-user" data-user-id="{{$user->id}}"><i class="fas fa-pencil-alt"></i>
+                                        <div class="btn btn-outline-success tooltip-actbtn" id="edit-student" data-student-id="{{$student->id}}"><i class="fas fa-pencil-alt"></i>
                                             <div class="top">
                                                 <p class="tooltiptxt">Edit</p>
                                             </div>
                                         </div>
 
-                                        <div class="btn btn-outline-danger tooltip-actbtn"  id="delete-user" data-user-id="{{$user->id}}"><i class="fal fa-user-times"></i>
+                                        <div class="btn btn-outline-danger tooltip-actbtn"  id="delete-student" data-student-id="{{$student->id}}"><i class="fal fa-user-times"></i>
                                             <div class="top">
                                                 <p class="tooltiptxt">Delete</p>
                                             </div>
@@ -73,11 +65,9 @@
                             <tfoot>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Full Name</th>
-                                    <th>Username</th>
-                                    <th>Email</th>
-                                    <th>Contact No.</th>
-                                    <th>Role</th>
+                                    <th>Last Name</th>
+                                    <th>First Name</th>
+                                    <th>Middle Name</th>
                                     <th>Action</th>
                                 </tr>
                             </tfoot>
